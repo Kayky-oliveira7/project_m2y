@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_m2y/features/components/movie-detail/movie_detail_widget.dart';
 import 'package:project_m2y/features/components/movie_lits/movie_list_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
               height: 350,
               color: Colors.blue,
             ),
-            const MovieListWidget(),
+            const MovieDetailWidget(),
             const MovieListWidget(),
           ],
         ),

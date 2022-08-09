@@ -5,16 +5,15 @@ class MovieDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      width: MediaQuery.of(context).size.width,
-      height: 100,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          _size(10, null),
           Row(
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "The Very Best of\nJohnny Depp",
                 style: TextStyle(
                   color: Colors.white,
@@ -22,19 +21,45 @@ class MovieDetailWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const Spacer(),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.favorite_border_outlined,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              )
             ],
           ),
-          _size(10),
+          _size(10, null),
           Row(
-            children: const [
-              Text(
-                "1.2 likes",
-                style: TextStyle(color: Colors.white),
+            children: [
+              const Icon(
+                Icons.favorite_border_outlined,
+                color: Colors.white,
+                size: 25,
               ),
-              Spacer(),
-              Text(
+              _size(null, 5),
+              const Text(
+                "1.2 likes",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.contrast,
+                size: 25,
+              ),
+              _size(null, 5),
+              const Text(
                 "3 of 10 watched",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
               ),
             ],
           )
@@ -43,8 +68,9 @@ class MovieDetailWidget extends StatelessWidget {
     );
   }
 
-  Widget _size(double height) {
+  Widget _size(double? height, double? width) {
     return SizedBox(
+      width: width,
       height: height,
     );
   }

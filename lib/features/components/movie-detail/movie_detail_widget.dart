@@ -62,7 +62,8 @@ class MovieDetailWidget extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
+          _size(10, null),
         ],
       ),
     );

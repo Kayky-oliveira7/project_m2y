@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.blue,
             ),
             const MovieListWidget(),
+            const MovieListWidget(),
           ],
         ),
       ),

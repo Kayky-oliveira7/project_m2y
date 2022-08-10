@@ -5,13 +5,18 @@ class MovieDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _size(10, null),
-          Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 350,
+          color: Colors.grey.shade900,
+        ),
+        _size(10, null),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
             children: [
               const Text(
                 "The Very Best of\nJohnny Depp",
@@ -32,8 +37,11 @@ class MovieDetailWidget extends StatelessWidget {
               )
             ],
           ),
-          _size(10, null),
-          Row(
+        ),
+        _size(10, null),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
             children: [
               const Icon(
                 Icons.favorite_border_outlined,
@@ -63,9 +71,9 @@ class MovieDetailWidget extends StatelessWidget {
               ),
             ],
           ),
-          _size(10, null),
-        ],
-      ),
+        ),
+        _size(10, null),
+      ],
     );
   }
 

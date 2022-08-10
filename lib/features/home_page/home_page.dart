@@ -16,14 +16,9 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 350,
-              color: Colors.blue,
-            ),
-            const MovieDetailWidget(),
-            const MovieListWidget(),
+          children: const [
+            MovieDetailWidget(),
+            MovieListWidget(),
           ],
         ),
       ),

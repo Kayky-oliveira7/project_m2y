@@ -1,10 +1,10 @@
-class SimilarMovieDetailModel {
+class SimilarMovieDetailEntity {
   final int? page;
   final List<Result>? results;
   final int? totalPages;
   final int? totalResults;
 
-  SimilarMovieDetailModel(
+  SimilarMovieDetailEntity(
       this.page, this.results, this.totalPages, this.totalResults);
 }
 

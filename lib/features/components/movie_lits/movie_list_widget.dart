@@ -5,49 +5,58 @@ class MovieListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return Row(
-              children: [
-                Container(
-                  width: 80,
-                  height: 120,
-                  color: Colors.red,
-                ),
-                _size(17, null),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          expandedHeight: 355,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
                   children: [
-                    const Text(
-                      "Edward Scissorhands",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    _size(null, 5),
-                    const Text(
-                      "1990 Drama, Fantasu",
-                      style: TextStyle(color: Colors.white, fontSize: 13.5),
+                    const Divider(),
+                    Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 120,
+                          color: Colors.red,
+                        ),
+                        _size(10, null),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Edward Scissorhands",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                            _size(null, 5),
+                            const Text(
+                              "1990 Drama, Fantasu",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.check_circle,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const Spacer(),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 35),
-                  child: Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-          itemCount: 20,
+              );
+            },
+            childCount: 10,
+          ),
         ),
-      ),
+      ],
     );
   }
 

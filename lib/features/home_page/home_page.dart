@@ -18,9 +18,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _dataSource = SimilarMovieDetailRemoteDataSourceImpl(Dio());
     super.initState();
+
     _dataSource
         .getSimilarMovieDetail(SimilarMovieDetailModel())
         .then((value) {});
+
   }
 
   @override

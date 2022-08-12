@@ -1,6 +1,6 @@
 class SimilarMovieDetailEntity {
   final int? page;
-  final List<Result>? results;
+  final List<ResultEntity>? results;
   final int? totalPages;
   final int? totalResults;
 
@@ -11,12 +11,12 @@ class SimilarMovieDetailEntity {
       required this.totalResults});
 }
 
-class Result {
+class ResultEntity {
   final bool? adult;
   final String? backdropPath;
   final List<int>? genreIds;
   final int? id;
-  final OriginalLanguage? originalLanguage;
+  final OriginalLanguageEntity? originalLanguage;
   final String? originalTitle;
   final String? overview;
   final double? popularity;
@@ -27,7 +27,7 @@ class Result {
   final double? voteAverage;
   final int? voteCount;
 
-  Result(
+  ResultEntity(
       {required this.adult,
       required this.backdropPath,
       required this.genreIds,
@@ -44,12 +44,12 @@ class Result {
       required this.voteCount});
 }
 
-enum OriginalLanguage { EN, JA, IT }
+enum OriginalLanguageEntity { EN, JA, IT }
 
 final originalLanguageValues = EnumValues({
-  "en": OriginalLanguage.EN,
-  "it": OriginalLanguage.IT,
-  "ja": OriginalLanguage.JA
+  "en": OriginalLanguageEntity.EN,
+  "it": OriginalLanguageEntity.IT,
+  "ja": OriginalLanguageEntity.JA
 });
 
 class EnumValues<T> {

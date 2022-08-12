@@ -288,9 +288,9 @@ void main() {
     }
   });
   test("Poster Path deve retornar Imagem do Vampiro", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
@@ -314,14 +314,14 @@ void main() {
   });
 
   test("Date Time deve retornar ReliseDate", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,

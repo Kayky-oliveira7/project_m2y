@@ -26,7 +26,7 @@ abstract class _SimilarMovieDetailControllerBase with Store {
       ),
     )
         .then((value) {
-      state = DataAppState<List<Result>>(value);
+      state = DataAppState<List<ResultEntity>>(value);
     });
   }
 }

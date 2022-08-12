@@ -20,7 +20,9 @@ class _HomePageState extends State<HomePage> {
     _dataSource = SimilarMovieDetailRemoteDataSourceImpl(Dio());
     super.initState();
     _dataSource.getSimilarMovieDetail(SimilarMovieDetailModel()).then((value) {
-      debugPrint("Result:$value");
+
+      debugPrint("resultado: $value");
+
     });
   }
 

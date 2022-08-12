@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:project_m2y/comom/app_state/app_state.dart';
+import 'package:project_m2y/features/components/button_favorite/button_favorite_widget.dart';
 import 'package:project_m2y/features/components/movie_lits/similar_movie_detail_controller.dart';
 import 'package:project_m2y/layers/data/data_sources/similar_movie_detail_data_source.dart';
 import 'package:project_m2y/layers/data/remotes/similar_movie_detail_remote_data_source_impl.dart';
@@ -165,14 +166,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                       ),
                     ),
                     const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
+                    const ButtonFavoriteWidget(),
                   ],
                 ),
                 _size(null, 10),

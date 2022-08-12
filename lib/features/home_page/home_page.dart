@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:project_m2y/features/components/movie-detail/movie_detail_widget.dart';
 import 'package:project_m2y/features/components/movie_lits/movie_list_widget.dart';
 import 'package:project_m2y/layers/data/data_sources/similar_movie_detail_data_source.dart';
 import 'package:project_m2y/layers/data/models/similar_movie_detail_model.dart';
@@ -19,24 +18,19 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _dataSource = SimilarMovieDetailRemoteDataSourceImpl(Dio());
     super.initState();
-    _dataSource.getSimilarMovieDetail(SimilarMovieDetailModel()).then((value) {
 
-      debugPrint("resultado: $value");
+    _dataSource
+        .getSimilarMovieDetail(SimilarMovieDetailModel())
+        .then((value) {});
 
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Column(
-          children: const [
-            MovieDetailWidget(),
-            MovieListWidget(),
-          ],
-        ),
+        child: MovieListWidget(),
       ),
     );
   }

@@ -3,9 +3,9 @@ import 'package:project_m2y/layers/domain/entitys/similar_movie_detail_entity.da
 
 final releaseDate = DateTime.parse('1969-07-20 20:18:04Z');
 final originalLanguage = EnumValues({
-  "en": OriginalLanguage.EN,
-  "it": OriginalLanguage.IT,
-  "ja": OriginalLanguage.JA
+  "en": OriginalLanguageEntity.EN,
+  "it": OriginalLanguageEntity.IT,
+  "ja": OriginalLanguageEntity.JA
 });
 void main() {
   test("Similar movie detail entity nao pode ser nulo", () {
@@ -60,14 +60,14 @@ void main() {
   });
 
   test("Results nao deve retornar nulo", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -82,14 +82,14 @@ void main() {
     expect(results, isNotNull);
   });
   test("Adult nao deve retonar false", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -107,14 +107,14 @@ void main() {
     }
   });
   test("Backdrop Path deve retornar uma imagem de fundo", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -133,14 +133,14 @@ void main() {
   });
 
   test("Genre Ids deve rotornar vazio", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -159,14 +159,14 @@ void main() {
   });
 
   test("ID deve retornar 1", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -185,14 +185,14 @@ void main() {
   });
 
   test("Linguagem original deve retornar EN", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -206,19 +206,19 @@ void main() {
     );
     for (var index = 0; index < results.length; index++) {
       var result = results[index];
-      expect(result.originalLanguage, OriginalLanguage.EN);
+      expect(result.originalLanguage, OriginalLanguageEntity.EN);
     }
   });
 
   test("Original Language deve retornar O Vampiro", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -237,14 +237,14 @@ void main() {
   });
 
   test("Overview Deve retornar Um filme que o vampiro nao gosta de alho", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -263,14 +263,14 @@ void main() {
   });
 
   test("Popularity deve retornar 2.130", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -295,7 +295,7 @@ void main() {
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -339,14 +339,14 @@ void main() {
     }
   });
   test("Title deve retornar Vampiro", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -365,14 +365,14 @@ void main() {
   });
 
   test("Video deve retornar Falso ", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -390,14 +390,14 @@ void main() {
     }
   });
   test("Vote Average de retornar 1.5", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -415,14 +415,14 @@ void main() {
     }
   });
   test("Vote Count deve retornar 10000", () {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,

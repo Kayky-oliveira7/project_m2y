@@ -12,6 +12,6 @@ class GenreRepositoryImpl implements GenreRepository {
   Future<List<GenreDataEntity>> getDataGenre(GenreEntity genreEntity) {
     return _genreDataSource.getDataGenre(GenreModel()).then((value) {
       return value.map((e) => GenreModelToEntityMapper(e).toEntity()).toList();
-    })
+    });
   }
 }

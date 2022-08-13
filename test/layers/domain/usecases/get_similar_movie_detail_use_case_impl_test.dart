@@ -6,16 +6,16 @@ import 'package:project_m2y/layers/domain/usecases/get_similar_movie_detail_use_
 class SimilarMovieDetailRepositoryImpl
     implements SimililarMovieDetailRepository {
   @override
-  Future<List<Result>> getSimilarMovieDetail(
+  Future<List<ResultEntity>> getSimilarMovieDetail(
       SimilarMovieDetailEntity similarMovieDetailEntity) async {
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,
@@ -41,14 +41,14 @@ void main() {
     GetSimilarMovieDetailUseCaseImpl useCaseImpl =
         GetSimilarMovieDetailUseCaseImpl(SimilarMovieDetailRepositoryImpl());
 
-    List<Result> results = [];
+    List<ResultEntity> results = [];
     results.add(
-      Result(
+      ResultEntity(
         adult: false,
         backdropPath: "Imagem de fundo Vampiro",
         genreIds: [],
         id: 1,
-        originalLanguage: OriginalLanguage.EN,
+        originalLanguage: OriginalLanguageEntity.EN,
         originalTitle: "O Vampiro",
         overview: "Um filme que o vampiro nao gosta de alho",
         popularity: 2.130,

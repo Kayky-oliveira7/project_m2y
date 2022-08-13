@@ -42,8 +42,22 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (_) {
-        return _listMovie(_controller.state);
+        return _renderBody(_controller.state);
       },
+    );
+  }
+
+  Widget _renderBody(AppState state) {
+    if (state is LoadAppState) {
+      return _load();
+    } else {
+      return _listMovie(_controller.state);
+    }
+  }
+
+  Widget _load() {
+    return const Center(
+      child: CircularProgressIndicator(),
     );
   }
 
@@ -74,10 +88,10 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                 child: Column(
                   children: [
                     const Spacer(),
-                    _selectedMovie(
-                      results.originalTitle ?? "",
-                      results.voteAverage ?? 0,
-                    ),
+                    SelectedMovieWidget(
+                      titleMovie: results.title ?? "",
+                      voteAverage: results.voteAverage ?? 0,
+                    )
                   ],
                 ),
               ),
@@ -110,20 +124,19 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                                 Text(
                                   results.originalTitle ?? "",
                                   style: const TextStyle(
-                                      color: Colors.white, fontSize: 18),
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
                                 ),
                                 _size(null, 5),
                                 const Text(
                                   "1990 Drama, Fantasu",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 13.5),
+                                    color: Colors.white,
+                                    fontSize: 13.5,
+                                  ),
                                 ),
                               ],
-                            ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.check_circle,
-                              color: Colors.white,
                             ),
                           ],
                         ),
@@ -140,79 +153,82 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     }
     return Container();
   }
+}
 
-  Widget _selectedMovie(String titleMovie, double voteAverage) {
-    return Align(
-      alignment: Alignment.bottomLeft,
-      child: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          color: Colors.black,
-          height: 100,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+class SelectedMovieWidget extends StatelessWidget {
+  final String titleMovie;
+  final double voteAverage;
+  const SelectedMovieWidget(
+      {super.key, required this.titleMovie, required this.voteAverage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      height: 100,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _size(null, 10),
+            Row(
               children: [
-                _size(null, 10),
-                Row(
-                  children: [
-                    Text(
-                      titleMovie,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Spacer(),
-                    const ButtonFavoriteWidget(),
-                  ],
+                Text(
+                  titleMovie,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                _size(null, 10),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    _size(5, null),
-                    Text(
-                      "${voteAverage.toString()} Likes",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const Spacer(),
-                    const Icon(
-                      Icons.contrast,
-                      size: 25,
-                      color: Colors.white,
-                    ),
-                    _size(5, null),
-                    const Text(
-                      "3 of 10 watched",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
+                const Spacer(),
+                const ButtonFavoriteWidget(),
+              ],
+            ),
+            _size(null, 10),
+            Row(
+              children: [
+                const Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                  size: 25,
+                ),
+                _size(5, null),
+                Text(
+                  "${voteAverage.toString()} Likes",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                const Spacer(),
+                const Icon(
+                  Icons.contrast,
+                  size: 25,
+                  color: Colors.white,
+                ),
+                _size(5, null),
+                const Text(
+                  "3 of 10 watched",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );
   }
+}
 
-  Widget _size(double? width, double? height) {
-    return SizedBox(
-      width: width,
-      height: height,
-    );
-  }
+Widget _size(double? width, double? height) {
+  return SizedBox(
+    width: width,
+    height: height,
+  );
 }

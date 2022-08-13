@@ -2,12 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:project_m2y/comom/app_state/app_state.dart';
 import 'package:project_m2y/features/components/button_favorite/button_favorite_widget.dart';
+import 'package:project_m2y/features/components/movie_lits/genre_controller.dart';
 import 'package:project_m2y/features/components/movie_lits/similar_movie_detail_controller.dart';
+import 'package:project_m2y/layers/data/data_sources/genre_data_source.dart';
 import 'package:project_m2y/layers/data/data_sources/similar_movie_detail_data_source.dart';
+import 'package:project_m2y/layers/data/remotes/genre_remote_data_source_impl.dart';
 import 'package:project_m2y/layers/data/remotes/similar_movie_detail_remote_data_source_impl.dart';
+import 'package:project_m2y/layers/data/repositories/genre_repository_impl.dart';
 import 'package:project_m2y/layers/data/repositories/similar_movie_detail_repository_impl.dart';
+import 'package:project_m2y/layers/domain/entitys/genre_entity.dart';
 import 'package:project_m2y/layers/domain/entitys/similar_movie_detail_entity.dart';
+import 'package:project_m2y/layers/domain/repositories/genre_repository.dart';
 import 'package:project_m2y/layers/domain/repositories/similar_movie_detail_repository.dart';
+import 'package:project_m2y/layers/domain/usecases/get_genre_use_case_impl.dart';
 import 'package:project_m2y/layers/domain/usecases/get_similar_movie_detail_use_case_impl.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -25,6 +32,11 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   late GetSimilarMovieDetailUseCaseImpl _getSimilarMovieDetailUseCaseImpl;
   late SimilarMovieDetailController _controller;
 
+  late GenreRepository _genreRepository;
+  GenreDataSource genreDataSource = GenreRemoteDataSourceImpl(Dio());
+  late GetGenreUseCaseImpl _caseImpl;
+  late GenreController _genreController;
+
   @override
   void initState() {
     _simililarMovieDetailRepository =
@@ -34,8 +46,13 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     _controller =
         SimilarMovieDetailController(_getSimilarMovieDetailUseCaseImpl);
 
+    _genreRepository = GenreRepositoryImpl(genreDataSource);
+    _caseImpl = GetGenreUseCaseImpl(_genreRepository);
+    _genreController = GenreController(_caseImpl);
+
     super.initState();
     _controller.load();
+    _genreController.load();
   }
 
   @override
@@ -114,13 +131,10 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                                   ),
                                 ),
                                 _size(null, 5),
-                                const Text(
-                                  "1990 Drama, Fantasu",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 13.5,
-                                  ),
-                                ),
+                                Text(
+                                  "${results.releaseDate!.year} ${_textGenre(_genreController.state)}",
+                                  style: TextStyle(color: Colors.white),
+                                )
                               ],
                             ),
                           ],
@@ -138,6 +152,17 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     }
 
     return Container();
+  }
+
+  String _textGenre(AppState state) {
+    if (state is DataAppState<List<GenreDataEntity>>) {
+      for (var i = 0; i < state.data.length; i++) {
+        var gener = state.data[i];
+
+        return gener.name!;
+      }
+    }
+    return "";
   }
 }
 

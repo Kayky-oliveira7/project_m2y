@@ -74,26 +74,11 @@ class _MovieListWidgetState extends State<MovieListWidget> {
               primary: true,
               snap: true,
               backgroundColor: Colors.red,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  image: DecorationImage(
-                      image: NetworkImage(
-                        "https://image.tmdb.org/t/p/w500/${results.backdropPath}",
-                      ),
-                      fit: BoxFit.cover),
-                ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SelectedMovieWidget(
-                      titleMovie: results.title ?? "",
-                      voteAverage: results.voteAverage ?? 0,
-                    )
-                  ],
-                ),
+              flexibleSpace: SelectedMovieWidget(
+                titleMovie: results.title ?? "",
+                voteAverage: results.voteAverage ?? 0,
+                image:
+                    "https://image.tmdb.org/t/p/w500/${results.backdropPath}",
               ),
               expandedHeight: 400,
               collapsedHeight: 100,
@@ -151,6 +136,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         );
       }
     }
+
     return Container();
   }
 }
@@ -158,69 +144,90 @@ class _MovieListWidgetState extends State<MovieListWidget> {
 class SelectedMovieWidget extends StatelessWidget {
   final String titleMovie;
   final double voteAverage;
+  final String image;
   const SelectedMovieWidget(
-      {super.key, required this.titleMovie, required this.voteAverage});
+      {super.key,
+      required this.titleMovie,
+      required this.voteAverage,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        image: DecorationImage(
+            image: NetworkImage(
+              image,
+            ),
+            fit: BoxFit.cover),
+      ),
       width: MediaQuery.of(context).size.width,
-      color: Colors.black,
-      height: 100,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _size(null, 10),
-            Row(
-              children: [
-                Text(
-                  titleMovie,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        children: [
+          const Spacer(),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            color: Colors.black,
+            height: 100,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _size(null, 10),
+                  Row(
+                    children: [
+                      Text(
+                        titleMovie,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      const ButtonFavoriteWidget(),
+                    ],
                   ),
-                ),
-                const Spacer(),
-                const ButtonFavoriteWidget(),
-              ],
+                  _size(null, 10),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      _size(5, null),
+                      Text(
+                        "${voteAverage.toString()} Likes",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.contrast,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                      _size(5, null),
+                      const Text(
+                        "3 of 10 watched",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            _size(null, 10),
-            Row(
-              children: [
-                const Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                  size: 25,
-                ),
-                _size(5, null),
-                Text(
-                  "${voteAverage.toString()} Likes",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                const Spacer(),
-                const Icon(
-                  Icons.contrast,
-                  size: 25,
-                  color: Colors.white,
-                ),
-                _size(5, null),
-                const Text(
-                  "3 of 10 watched",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

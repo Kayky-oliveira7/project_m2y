@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final similarMovieDetailModel = similarMovieDetailModelFromJson(jsonString);
+//     final movieDetailResultModel = movieDetailResultModelFromJson(jsonString);
 
 import 'dart:convert';
 
-SimilarMovieDetailModel similarMovieDetailModelFromJson(String str) =>
-    SimilarMovieDetailModel.fromJson(json.decode(str));
+SimilarMovieDetailResultModel movieDetailResultModelFromJson(String str) =>
+    SimilarMovieDetailResultModel.fromJson(json.decode(str));
 
-String similarMovieDetailModelToJson(SimilarMovieDetailModel data) =>
+String movieDetailResultModelToJson(SimilarMovieDetailResultModel data) =>
     json.encode(data.toJson());
 
-class SimilarMovieDetailModel {
-  SimilarMovieDetailModel({
+class SimilarMovieDetailResultModel {
+  SimilarMovieDetailResultModel({
     this.page,
     this.results,
     this.totalPages,
@@ -23,8 +23,8 @@ class SimilarMovieDetailModel {
   int? totalPages;
   int? totalResults;
 
-  factory SimilarMovieDetailModel.fromJson(Map<String, dynamic> json) =>
-      SimilarMovieDetailModel(
+  factory SimilarMovieDetailResultModel.fromJson(Map<String, dynamic> json) =>
+      SimilarMovieDetailResultModel(
         page: json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
@@ -109,7 +109,7 @@ class Result {
       };
 }
 
-enum OriginalLanguage { EN, JA, IT }
+enum OriginalLanguage { EN, IT, JA }
 
 final originalLanguageValues = EnumValues({
   "en": OriginalLanguage.EN,
@@ -125,6 +125,5 @@ class EnumValues<T> {
 
   Map<T, String> get reverse {
     return reverseMap = map.map((k, v) => MapEntry(v, k));
-    ;
   }
 }
